@@ -59,7 +59,7 @@ export const signin = async (req, res, next) => {
       })
       .json(rest);
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     next(error);
   }
 };
