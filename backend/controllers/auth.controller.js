@@ -51,11 +51,15 @@ console.log(password)
     }
     const token = jwt.sign({ id: validUser._id, isAdmin:validUser.isAdmin }, process.env.JWT_SECRET_KEY,);
     // console.log(token)
+    console.log(token)
 
      const { password :pass, ...rest} = validUser._doc
+    
     res.status(200).cookie('access_token', token, {
         // httpOnly: true,//to prevent access from javascript(commented to access in frontend)
-        path: '/',
+          httpOnly: true, 
+  secure:true, // Enable secure only in production
+  path: '/',
       })
       .json(rest);
   } catch (error) {
