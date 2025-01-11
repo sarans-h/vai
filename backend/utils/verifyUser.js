@@ -5,7 +5,7 @@ export const verifyToken = (req, res, next) => {
   // Get the JWT token from cookies
   const token = req.cookies.access_token;
 
-//   console.log('Token:', token); 
+  console.log('Token:', token); 
 
   if(!token) {
     return next(errorHandler(401, 'Unauthorized : Please login'));
