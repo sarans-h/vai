@@ -23,6 +23,7 @@ export const signup = async (req, res, next) => {
     const token = jwt.sign({ id: newUser._id, isAdmin:newUser.isAdmin }, process.env.JWT_SECRET_KEY,);
     const { password :pass, ...rest} = newUser._doc
     res.status(201).cookie('access_token', token, {
+      sameSite: 'None',
       // httpOnly: true,//to prevent access from javascript(commented to access in frontend)
        httpOnly: true, 
   secure:true, // Enable secure only in production
@@ -59,6 +60,7 @@ console.log(password)
      const { password :pass, ...rest} = validUser._doc
     
     res.status(200).cookie('access_token', token, {
+      sameSite: 'None',
         // httpOnly: true,//to prevent access from javascript(commented to access in frontend)
           httpOnly: true, 
   secure:true, // Enable secure only in production
