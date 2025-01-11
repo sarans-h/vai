@@ -24,7 +24,10 @@ export const signup = async (req, res, next) => {
     const { password :pass, ...rest} = newUser._doc
     res.status(201).cookie('access_token', token, {
       // httpOnly: true,//to prevent access from javascript(commented to access in frontend)
-      path: '/',
+       httpOnly: true, 
+  secure:true, // Enable secure only in production
+  path: '/',
+      maxAge: 24 * 60 * 60 * 1000, 
     }).json({ message: 'Signup successful', user: newUser });
   } catch (error) {
     next(error);
@@ -60,6 +63,7 @@ console.log(password)
           httpOnly: true, 
   secure:true, // Enable secure only in production
   path: '/',
+      maxAge: 24 * 60 * 60 * 1000, 
       })
       .json(rest);
   } catch (error) {
