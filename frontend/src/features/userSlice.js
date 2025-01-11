@@ -148,7 +148,7 @@ export const loginUser = (formData) => async (dispatch) => {
         dispatch(authRequest());
         const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-        const { data } = await axios.post('/api/auth/signin', formData, config);
+        const { data } = await axios.post('https://vai-2ucd.onrender.com/api/auth/signin', formData, config);
         console.log(data);
 
         dispatch(authSuccess(data));
@@ -160,7 +160,7 @@ export const loginUser = (formData) => async (dispatch) => {
 };
 export const logoutUser = () => async (dispatch) => {
     try {
-        await axios.post('/api/auth/signout');
+        await axios.post('https://vai-2ucd.onrender.com/api/auth/signout');
 
         dispatch(logoutSuccess()); // No payload needed if we're setting user to null
         
@@ -173,7 +173,7 @@ export const registerUser = (formdata) => async (dispatch) => {
     try {
         dispatch(authRequest());
         const config = { headers: { "Content-Type": "multipart/form-data" } };
-        const { data } = await axios.post('/api/auth/signup', formdata,config);
+        const { data } = await axios.post('https://vai-2ucd.onrender.com/api/auth/signup', formdata,config);
         console.log(data);
 
         dispatch(authSuccess(data.user));
@@ -188,7 +188,7 @@ export const loadUser=()=>async(dispatch)=>{
     try{
         dispatch(loadUserRequest());
         const {data}=await axios.get(
-            '/api/auth/me',
+            'https://vai-2ucd.onrender.com/api/auth/me',
         )
         dispatch(loadUserSuccess(data));
 
