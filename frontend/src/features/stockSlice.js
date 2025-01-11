@@ -136,6 +136,7 @@ export const addStock = (stockData) => async (dispatch) => {
             headers: {
                 'Content-Type': 'application/json',
             },
+            withCredentials: true,
         };
         const { data } = await axios.post('https://vai-2ucd.onrender.com/api/stock/create', stockData, config);
         dispatch(addStockSuccess(data));
@@ -147,7 +148,10 @@ export const addStock = (stockData) => async (dispatch) => {
 export const getStocks = () => async (dispatch) => {
     try {
         dispatch(getStocksRequest());
-        const { data } = await axios.get('https://vai-2ucd.onrender.com/api/stock/all');
+        const config = {
+            withCredentials: true, // Enable credentials
+        };
+        const { data } = await axios.get('https://vai-2ucd.onrender.com/api/stock/all',config);
         console.log(data)
         dispatch(getStocksSuccess(data));
     } catch (error) {
@@ -158,7 +162,10 @@ export const getStocks = () => async (dispatch) => {
 export const getStockDetails = (stockId) => async (dispatch) => {
     try {
         dispatch(getStockDetailsRequest());
-        const { data } = await axios.get(`https://vai-2ucd.onrender.com/api/stock/${stockId}`);
+        const config = {
+            withCredentials: true, // Enable credentials
+        };
+        const { data } = await axios.get(`https://vai-2ucd.onrender.com/api/stock/${stockId}`,config);
         dispatch(getStockDetailsSuccess(data));
     } catch (error) {
         dispatch(getStockDetailsFail(error.response.data.message));
@@ -172,6 +179,7 @@ export const updateStock = (stockId, stockData) => async (dispatch) => {
             headers: {
                 'Content-Type': 'application/json',
             },
+            withCredentials: true, 
         };
         const { data } = await axios.put(`https://vai-2ucd.onrender.com/api/stock/update/${stockId}`, stockData, config);
         dispatch(updateStockSuccess(data));
@@ -185,7 +193,10 @@ export const deleteStock = ({stockId,quantity}) => async (dispatch) => {
     try {
         dispatch(deleteStockRequest());
         // console.log(quantity);
-        await axios.post(`https://vai-2ucd.onrender.com/api/stock/delete/${stockId}`,{quantity});
+        const config = {
+            withCredentials: true, // Enable credentials
+        };
+        await axios.post(`https://vai-2ucd.onrender.com/api/stock/delete/${stockId}`,{quantity},config);
         dispatch(deleteStockSuccess());
     } catch (error) {
         dispatch(deleteStockFail(error.response.data.message));
@@ -195,7 +206,10 @@ export const deleteStock = ({stockId,quantity}) => async (dispatch) => {
 export const getPLHistory = () => async (dispatch) => {
     try {
         dispatch(getPLHistoryRequest());
-        const { data } = await axios.get('https://vai-2ucd.onrender.com/api/auth/pl-history'); // New API endpoint
+        const config = {
+            withCredentials: true, // Enable credentials
+        };
+        const { data } = await axios.get('https://vai-2ucd.onrender.com/api/auth/pl-history',config); // New API endpoint
         console.log(data);
         dispatch(getPLHistorySuccess(data));
     } catch (error) {
