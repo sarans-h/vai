@@ -83,6 +83,7 @@ export const signout = (req, res, next) => {
 
 export const getUser = async (req, res, next) => {
   try {
+    console.log("calling getUser");
     // console.log(req.user)
     const user = await User.findById(req.user.id).select("-password");
     // console.log(user);
