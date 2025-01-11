@@ -137,7 +137,7 @@ export const addStock = (stockData) => async (dispatch) => {
                 'Content-Type': 'application/json',
             },
         };
-        const { data } = await axios.post('/api/stock/create', stockData, config);
+        const { data } = await axios.post('https://vai-2ucd.onrender.com/api/stock/create', stockData, config);
         dispatch(addStockSuccess(data));
     } catch (error) {
         dispatch(addStockFail(error.response.data.message));
@@ -147,7 +147,7 @@ export const addStock = (stockData) => async (dispatch) => {
 export const getStocks = () => async (dispatch) => {
     try {
         dispatch(getStocksRequest());
-        const { data } = await axios.get('/api/stock/all');
+        const { data } = await axios.get('https://vai-2ucd.onrender.com/api/stock/all');
         console.log(data)
         dispatch(getStocksSuccess(data));
     } catch (error) {
@@ -158,7 +158,7 @@ export const getStocks = () => async (dispatch) => {
 export const getStockDetails = (stockId) => async (dispatch) => {
     try {
         dispatch(getStockDetailsRequest());
-        const { data } = await axios.get(`/api/stock/${stockId}`);
+        const { data } = await axios.get(`https://vai-2ucd.onrender.com/api/stock/${stockId}`);
         dispatch(getStockDetailsSuccess(data));
     } catch (error) {
         dispatch(getStockDetailsFail(error.response.data.message));
@@ -173,7 +173,7 @@ export const updateStock = (stockId, stockData) => async (dispatch) => {
                 'Content-Type': 'application/json',
             },
         };
-        const { data } = await axios.put(`/api/stock/update/${stockId}`, stockData, config);
+        const { data } = await axios.put(`https://vai-2ucd.onrender.com/api/stock/update/${stockId}`, stockData, config);
         dispatch(updateStockSuccess(data));
     } catch (error) {
         dispatch(updateStockFail(error.response.data.message));
@@ -185,7 +185,7 @@ export const deleteStock = ({stockId,quantity}) => async (dispatch) => {
     try {
         dispatch(deleteStockRequest());
         // console.log(quantity);
-        await axios.post(`/api/stock/delete/${stockId}`,{quantity});
+        await axios.post(`https://vai-2ucd.onrender.com/api/stock/delete/${stockId}`,{quantity});
         dispatch(deleteStockSuccess());
     } catch (error) {
         dispatch(deleteStockFail(error.response.data.message));
@@ -195,7 +195,7 @@ export const deleteStock = ({stockId,quantity}) => async (dispatch) => {
 export const getPLHistory = () => async (dispatch) => {
     try {
         dispatch(getPLHistoryRequest());
-        const { data } = await axios.get('/api/auth/pl-history'); // New API endpoint
+        const { data } = await axios.get('https://vai-2ucd.onrender.com/api/auth/pl-history'); // New API endpoint
         console.log(data);
         dispatch(getPLHistorySuccess(data));
     } catch (error) {
