@@ -55,6 +55,7 @@ function AddBusiness() {
         setFormData((prev) => ({ ...prev, ticker: keywords }));
         if (keywords.length > 2) {
             const response = await axios.get(`https://finnhub.io/api/v1/search?q=${keywords}&exchange=US&token=ctrs3shr01qhb16nl920ctrs3shr01qhb16nl92g`);
+            console.log(response);
             setTickerSuggestions(response.data.result || []);
         } else {
             setTickerSuggestions([]);
