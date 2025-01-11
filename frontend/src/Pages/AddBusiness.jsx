@@ -55,9 +55,8 @@ function AddBusiness() {
         setFormData((prev) => ({ ...prev, ticker: keywords }));
         if (keywords.length > 2) {
             const response = await axios.get(
-            `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=ctrs3shr01qhb16nl920ctrs3shr01qhb16nl92g`,
-            { withCredentials: false } // Explicitly set withCredentials to false
-        );
+            `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=ctrs3shr01qhb16nl920ctrs3shr01qhb16nl92g`);
+            console.log(response);
             setTickerSuggestions(response.data.result || []);
         } else {
             setTickerSuggestions([]);
@@ -68,9 +67,7 @@ function AddBusiness() {
         setFormData((prev) => ({ ...prev, symbol: symbol, name: name, ticker: "" }));
         setTickerSuggestions([]);
         const response = await axios.get(
-            `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=ctrs3shr01qhb16nl920ctrs3shr01qhb16nl92g`,
-            { withCredentials: false } // Explicitly set withCredentials to false
-        );
+            `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=ctrs3shr01qhb16nl920ctrs3shr01qhb16nl92g`);
         setLatestPrice(response.data.c);
     };
 
