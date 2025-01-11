@@ -153,6 +153,7 @@ export const loginUser = (formData) => async (dispatch) => {
 
         dispatch(authSuccess(data));
     } catch (error) {
+        console.log(error)
         dispatch(authFail(error.response && error.response.data.message 
             ? error.response.data.message 
             : error.message));
