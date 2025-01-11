@@ -3,6 +3,7 @@ import { errorHandler } from './error.js';
 
 export const verifyToken = (req, res, next) => {
   // Get the JWT token from cookies
+  console.log(req);
   const token = req.cookies.access_token;
 
   console.log('Token:', token); 
